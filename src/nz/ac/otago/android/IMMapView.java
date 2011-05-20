@@ -53,6 +53,7 @@ public class IMMapView extends MapActivity {
 		locations = db.getLocations(IMConstants.ALL_LOCATION);
 		db.close();
 		
+		// Go through all locations and add them to the maps
 		Iterator<IMLocation> itr = locations.iterator();
 		
 		IMLocation location = new IMLocation();
