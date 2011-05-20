@@ -28,14 +28,16 @@ import nz.ac.otago.util.IMLocation;
 
 public class IMUtilities {
 	/**
-	 * Retrieved code from
+	 * Download data file from specified URL
 	 * http://www.helloandroid.com/tutorials/how-download-fileimage-url-your-device
-	 * @param inUrl url string to be passed to the function - implemented later
-	 * @param fileName - filename to be saved to device
+	 * @param inUrl 	Url string to be passed to the function
+	 * @param fos		FileOutputStream to be used (provided by Android)
+	 * @param fileName  Filename to be saved to device
 	 */
 	public void DownloadFromUrl(String inUrl, FileOutputStream fos, 
 															String fileName) {
 		try {
+			// Create URL-type object from url String
 			URL url = new URL(inUrl);
 
 			long startTime = System.currentTimeMillis();
@@ -50,7 +52,7 @@ public class IMUtilities {
 			BufferedInputStream bis = new BufferedInputStream(is);
 
 			/*
-			 * Read bytes to the Buffer until there is nothing more to read(-1).
+			 * Read bytes to the Buffer until there is nothing more to read (-1)
 			 */
 			ByteArrayBuffer baf = new ByteArrayBuffer(50);
 			int current = 0;
@@ -58,7 +60,7 @@ public class IMUtilities {
 				baf.append((byte) current);
 			}
 
-			/* Convert the Bytes read to a String. */
+			/* Convert the Bytes read to a String then write to file */
 			fos.write(baf.toByteArray());
 			fos.close();
 			Log.d("InterestMap", "Download ready in "
@@ -71,10 +73,10 @@ public class IMUtilities {
 	}
 	
 	/**
+	 * Parse data file saved on device to get all the locations
 	 * http://www.roseindia.net/java/beginners/java-read-file-line-by-line.shtml
 	 * http://www.javapractices.com/topic/TopicAction.do?Id=87
-	 * @author Andy Pham
-	 *
+	 * @return An ArrayList of all locations in the data file
 	 */	
 	public ArrayList<IMLocation> parseFile(FileInputStream fis) {
 		ArrayList<IMLocation> locationList = new ArrayList<IMLocation>();
@@ -118,9 +120,10 @@ public class IMUtilities {
 	}
 	
 	/**
+	 * Get HTML content of the web page that contains info. about the place
 	 * http://androidcommunity.com/forums/archive/index.php/t-8177.html
-	 * @param url
-	 * @return
+	 * @param url	String URL to the web page
+	 * @return		String contents of the web page
 	 */
 	public String getOfflineHTML(String url) {
 		HttpClient httpClient = new DefaultHttpClient();

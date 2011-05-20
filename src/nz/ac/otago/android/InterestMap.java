@@ -26,6 +26,10 @@ import nz.ac.otago.util.IMUtilities;
 import nz.ac.otago.util.IMDatabase;
 import nz.ac.otago.util.IMLocation;
 
+/**
+ * Main Intent at application startup, show some buttons for further actions
+ * @author ngocminh
+ */
 public class InterestMap extends Activity implements OnClickListener {
 	private static final String FIXED_URL = "http://www.andypham.info/interestlist.txt";
 	private ArrayList<IMLocation> locations;
@@ -89,6 +93,9 @@ public class InterestMap extends Activity implements OnClickListener {
 		exitButton.setOnClickListener(this);
 	}
 
+	/**
+	 * Start new Intent according to which button clicked
+	 */
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.about_button:

@@ -20,6 +20,11 @@ import nz.ac.otago.util.IMConstants;
 import nz.ac.otago.util.IMDatabase;
 import nz.ac.otago.util.IMLocation;
 
+/**
+ * Intent to show MapView with one or all locations from data file
+ * @author ngocminh
+ *
+ */
 public class IMMapView extends MapActivity {
 	private Drawable drawable;
 	private List<Overlay> mapOverlays;
@@ -47,7 +52,7 @@ public class IMMapView extends MapActivity {
 		
 		ArrayList<IMLocation> locations = new ArrayList<IMLocation>();
 		
-		/* Get from database */
+		/* Get locations from database */
 		IMDatabase db = new IMDatabase(this);
 		db.open();
 		locations = db.getLocations(IMConstants.ALL_LOCATION);
@@ -59,6 +64,7 @@ public class IMMapView extends MapActivity {
 		IMLocation location = new IMLocation();
 		while(itr.hasNext()) {
 			location = itr.next();
+			// Create new GeoPoint object representing the location of interest
 			GeoPoint point = new GeoPoint(location.getLatitude(), 
 											location.getLongitude());
 			OverlayItem overlayitem = new OverlayItem(point, 
@@ -71,13 +77,14 @@ public class IMMapView extends MapActivity {
 		/* Single point view or whole view */
 		Intent me = this.getIntent();
 		if (me.hasExtra("singleView")) {
+			/* Navigate directly to specified place */
 			GeoPoint point = new GeoPoint(me.getIntExtra("lat", 0),
 											me.getIntExtra("lon", 0));
 			
 			mapController.animateTo(point);
-			mapController.setZoom(10);
+			mapController.setZoom(10); 	// Zooming closer to the location
 		} else {
-			mapController.setZoom(2); // Zoom 1 is world view
+			mapController.setZoom(2); 	// Zooming to world view
 		}
 		
 		mapOverlays.add(itemizedOverlay);
@@ -88,7 +95,7 @@ public class IMMapView extends MapActivity {
 	    return false;
 	}
 	
-	/*
+	/**
 	 * Class to draw the marker on an Overlay
 	 */
 	public class IMItemizedOverlay extends ItemizedOverlay<OverlayItem> {
@@ -113,10 +120,10 @@ public class IMMapView extends MapActivity {
 			return mOverlays.size();
 		}
 		
-		/*
+		/**
 		 * Override Method
-		 * Start new WebView intent to show the web defined on the file for 
-		 * each location
+		 * Start new WebView Intent to show the webpage from URL defined on 
+		 * the data file for each location
 		 * @see com.google.android.maps.ItemizedOverlay#onTap(int)
 		 */
 		@Override

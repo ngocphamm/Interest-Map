@@ -11,6 +11,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
+/**
+ * Class for SQLite database actions
+ * @author ngocminh
+ */
 public class IMDatabase extends Activity {
 	private SQLiteDatabase db;
 	private final Context context;
@@ -21,11 +25,18 @@ public class IMDatabase extends Activity {
 		dbhelper = new IMDatabaseHelper(context, IMConstants.DATABASE_NAME, null,
 				IMConstants.DATABASE_VERSION);
 	}
-
+	
+	/**
+	 * Close database connection
+	 */
 	public void close() {
 		db.close();
 	}
-
+	
+	/**
+	 * Open new database connection, trying to get "write" permission
+	 * @throws SQLiteException
+	 */
 	public void open() throws SQLiteException {
 		try {
 			db = dbhelper.getWritableDatabase();
@@ -35,6 +46,9 @@ public class IMDatabase extends Activity {
 		}
 	}
 	
+	/**
+	 * Each time reloading data file, also delete all existing records from db
+	 */
 	public void prepare() {
 		Log.v("InterestMap", "IMDatabase prepare: Deleting old records");
 		String delete = "delete from " + IMConstants.LOCATION_TABLE
@@ -42,6 +56,11 @@ public class IMDatabase extends Activity {
 		db.execSQL(delete);
 	}
 
+	/**
+	 * Insert new location to database
+	 * @param location	Location object to be inserted
+	 * @return
+	 */
 	public long insertLocation(IMLocation location) {
 		try {
 			ContentValues newValue = new ContentValues();
@@ -63,6 +82,10 @@ public class IMDatabase extends Activity {
 		}
 	}
 	
+	/**
+	 * Iterate through all locations parsed from data file then save to database
+	 * @param locations
+	 */
 	public void storeLocations(ArrayList<IMLocation> locations) {
 		Iterator<IMLocation> itr = locations.iterator();
 
@@ -74,7 +97,12 @@ public class IMDatabase extends Activity {
 			this.insertLocation(location);
 		}
 	}
-
+	
+	/**
+	 * Get locations from database, could be within a particular category
+	 * @param catName 	Category name
+	 * @return			An ArrayList of all resulted locations
+	 */
 	public ArrayList<IMLocation> getLocations(String catName) {
 		ArrayList<IMLocation> locationList = new ArrayList<IMLocation>();
 		
@@ -82,6 +110,8 @@ public class IMDatabase extends Activity {
 		if (catName.compareTo(IMConstants.ALL_LOCATION) != 0) {
 			query += " where " + IMConstants.CATEGORY + " = '" + catName + "'"; 
 		}
+		
+		// Order by location name
 		query += " order by " + IMConstants.LOCATION;
 				
 		Cursor c = db.rawQuery(query, null);
@@ -102,6 +132,10 @@ public class IMDatabase extends Activity {
 		return locationList;
 	}
 	
+	/**
+	 * Get all categories on database
+	 * @return	An ArrayList of all categories
+	 */
 	public ArrayList<String> getCategories() {
 		ArrayList<String> categoryList = new ArrayList<String>();
 //		Cursor c = db.query(Constants.LOCATION_TABLE, null, null, null, null, 
@@ -123,6 +157,11 @@ public class IMDatabase extends Activity {
 		return categoryList;
 	}
 	
+	/**
+	 * Get cached data of location's description from database
+	 * @param locationName	Location Name
+	 * @return				String of description, web contents actually (HTML)
+	 */
 	public String getCachedData(String locationName) {
 		String data = "";
 		

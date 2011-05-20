@@ -1,5 +1,9 @@
 package nz.ac.otago.util;
 
+/**
+ * Class for CONSTANTS such as database-related name and messages
+ * @author ngocminh
+ */
 public class IMConstants { 
 	public static final String FILE_NAME 		= "locationlist.txt";
 	public static final String ALL_LOCATION		= "All Locations";

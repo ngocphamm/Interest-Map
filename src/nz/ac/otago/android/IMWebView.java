@@ -8,6 +8,10 @@ import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+/**
+ * WebView Intent to show detail information for a location
+ * @author ngocminh
+ */
 public class IMWebView extends Activity {
 	private WebView mWebView;
 	
@@ -18,14 +22,16 @@ public class IMWebView extends Activity {
 	    mWebView = (WebView) findViewById(R.id.imwebview);
 	    mWebView.getSettings().setJavaScriptEnabled(true);
 	    
-	    // If has Internet connection, go ONLINE; else use OFFLINE data
+	    // If has Internet connection, go ONLINE; else use OFFLINE (cache) data
 	    Intent me = this.getIntent();
 	    if (me.hasExtra("offline")) {
 	    	int offline = me.getIntExtra("offline", 0);
-	    	if (offline == 0) { // Online browsing
+	    	if (offline == 0) { 
+	    		/* Online browsing */
 	    		String url = me.getStringExtra("customURL");
 	    		mWebView.loadUrl(url);
-	    	} else { // Load offline data from cache
+	    	} else { 
+	    		/* Load offline data from cache */
 	    		String locationName = me.getStringExtra("locationName");
 	    		IMDatabase db = new IMDatabase(IMWebView.this);
 	    		db.open();
@@ -38,7 +44,7 @@ public class IMWebView extends Activity {
 	    mWebView.setWebViewClient(new IMWebViewClient());
 	}
 	
-	/*
+	/**
 	 * Override method
 	 * Go Back within the WebView whenever possible then back to last Intent
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
@@ -53,7 +59,7 @@ public class IMWebView extends Activity {
 	    return super.onKeyDown(keyCode, event);
 	}
 	
-	/*
+	/**
 	 * Ensure that clicking links on WebView will not open the 'actual' browser
 	 * Links are loaded using the current WebView
 	 */

@@ -18,6 +18,11 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * Intent for Location browsing - Show all Locations from data file within a
+ * particular Category or All categories
+ * @author ngocminh
+ */
 public class IMBrowseLoc extends ListActivity {
 	LocationAdapter myLocation;
 	
@@ -58,6 +63,10 @@ public class IMBrowseLoc extends ListActivity {
 		}
 	}
 	
+	/**
+	 * Check that Internet connection is available or not
+	 * @return True if there is, False otherwise
+	 */
 	public boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(
 												Context.CONNECTIVITY_SERVICE);
@@ -112,14 +121,13 @@ public class IMBrowseLoc extends ListActivity {
 				holder = (ViewHolder) view.getTag();
 			}
 			
-			holder.mLocation = getItem(index); 
-			holder.mName.setText(holder.mLocation.getName()); 
-			holder.mCategory.setText(holder.mLocation.getCategory());
+			IMLocation location = getItem(index); 
+			holder.mName.setText(location.getName()); 
+			holder.mCategory.setText(location.getCategory());
 			view.setTag(holder); return view;
 		}
 		
 		public class ViewHolder {
-			IMLocation mLocation;
 			TextView mName;
 			TextView mCategory;
 		}

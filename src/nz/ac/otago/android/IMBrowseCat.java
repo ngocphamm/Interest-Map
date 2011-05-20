@@ -18,6 +18,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Intent for Category browsing - Show all categories from data file
+ * @author ngocminh
+ */
 public class IMBrowseCat extends ListActivity {
 	CategoryAdapter myCategory;
 	
@@ -29,7 +33,7 @@ public class IMBrowseCat extends ListActivity {
 		myCategory = new CategoryAdapter(this);
 		if (myCategory.getCount() != 0) {
 			this.setListAdapter(myCategory);
-		} else {
+		} else {	/* Show a message that there's no category */
 			Toast toast = Toast.makeText(this, IMConstants.TOAST_NO_CAT, 
 													Toast.LENGTH_SHORT);
 			toast.setGravity(Gravity.TOP|Gravity.CENTER, 0, 40);
@@ -41,12 +45,17 @@ public class IMBrowseCat extends ListActivity {
     protected void onListItemClick(ListView parent, View v, int position, long id) {
 		String cat = myCategory.getItem(position);
 		
-		/* On list item click, change to Location Browsing */ 
+		/* On list item click, change to Location Browsing with category name */ 
 		Intent locList = new Intent(this, IMBrowseLoc.class);
 		locList.putExtra("categoryName", cat);
 		startActivity(locList);
 	}
 	
+	/**
+	 * Extend BaseAdapter to create a list of category
+	 * @author ngocminh
+	 *
+	 */
 	private class CategoryAdapter extends BaseAdapter { 
 		private LayoutInflater mInflater;
 		private ArrayList<String> categories;

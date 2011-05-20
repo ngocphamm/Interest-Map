@@ -1,5 +1,15 @@
 package nz.ac.otago.util;
 
+/**
+ * Class for representing a location of interest with some attributes
+ * - latitude
+ * - longitude
+ * - location name
+ * - category
+ * - url (for detail information)
+ * - cache (detail information cached)
+ * @author ngocminh
+ */
 public class IMLocation {
 	private int latitude;
 	private int longitude;
