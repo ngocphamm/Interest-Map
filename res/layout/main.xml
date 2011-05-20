@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="30dip" > 
+	<LinearLayout
+		android:orientation="vertical" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_gravity="center" >
+	    <TextView
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:text="@string/main_title"
+			android:layout_marginBottom="25dip" 
+			android:textSize="28.5sp" 
+			android:layout_gravity="center"/>
+		<Button 
+			android:id="@+id/browse_button"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:text="@string/browse_label" />
+		<Button 
+			android:id="@+id/demo_button"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:text="@string/demo_label" />
+		<Button 
+			android:id="@+id/about_button"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:text="@string/about_label" />
+		<Button 
+			android:id="@+id/exit_button"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+		android:text="@string/exit_label" />
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Interest Map</string>
+    <string name="main_title">Map of Interesting Locations</string>
+    
+    <string name="browse_title">Browsing list of locations</string>
+    <string name="browse_label">Browse Locations</string>
+    <string name="browse_location_name">Location</string>
+    <string name="browse_location_category">Category</string>
+	
+	<string name="demo_title">Loading location ...</string>
+	<string name="demo_label">Demo</string>
+	<string name="demo_instruction">You started new game!</string>
+	<string name="web_title">Web View</string>
+	
+	<string name="about_title">About This Application</string>
+	<string name="about_label">About</string>
+	<string name="about_text">Produced by Andy Pham for TELE404 Project @ University of Otago</string>
+	
+	<string name="exit_label">Exit</string>
+</resources>
