@@ -37,8 +37,13 @@ public class InterestMap extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
+		/*
+		 * Check if there is Internet connection or not
+		 * If YES: Ask user to Download data from Internet or Load from cache
+		 * Data will be downloaded in background with a progress dialog
+		 * If NO: Show user that there is no Internet connection
+		 */
 		if (this.isOnline() == true) {
-			/* Try an Alert Dialog */
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(IMConstants.MES_LOAD_DATA)
 				.setCancelable(false)
@@ -104,6 +109,10 @@ public class InterestMap extends Activity implements OnClickListener {
 		}
 	}
 	
+	/**
+	 * Check that Internet connection is available or not
+	 * @return True if there is, False otherwise
+	 */
 	public boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(
 												Context.CONNECTIVITY_SERVICE);
@@ -118,9 +127,9 @@ public class InterestMap extends Activity implements OnClickListener {
 	}
 	
 	/**
-	 * To do download on background with a progress dialog
+	 * Backgrounding Task
+	 * To download data file and update the progress dialog
 	 * @author ngocminh
-	 *
 	 */
 	protected class DownloadDataFile extends AsyncTask<String, Void, Integer> {
 		protected void onPreExecute() {
@@ -163,6 +172,11 @@ public class InterestMap extends Activity implements OnClickListener {
 		}
 	}
 	
+	/**
+	 * Backgrounding Task
+	 * To download all places' descriptions from associated URLs for caching
+	 * @author ngocminh
+	 */
 	protected class LoadInfoCache extends AsyncTask<Void, Void, Integer> {
 		protected void onPreExecute() {
 			pDialog.setMessage("Loading location info from URLs");
@@ -196,6 +210,11 @@ public class InterestMap extends Activity implements OnClickListener {
 		}
 	}
 	
+	/**
+	 * Backgrounding Task
+	 * To store all locations with cached descriptions to SQLite database
+	 * @author ngocminh
+	 */
 	protected class StoreLocations extends AsyncTask<Void, Void, Integer> {
 		protected Integer doInBackground(Void... params) {
 			db.storeLocations(locations);
