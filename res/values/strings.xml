@@ -3,7 +3,7 @@
     <string name="app_name">Interest Map</string>
     <string name="main_title">Map of Interesting Locations</string>
     
-    <string name="browse_title">Browsing list of locations</string>
+    <string name="browse_title">Browsing By Category</string>
     <string name="browse_label">Browse Locations</string>
     <string name="browse_location_name">Location</string>
     <string name="browse_location_category">Category</string>

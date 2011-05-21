@@ -2,6 +2,7 @@ package nz.ac.otago.android;
 
 import java.util.ArrayList;
 
+import nz.ac.otago.util.IMConstants;
 import nz.ac.otago.util.IMDatabase;
 import nz.ac.otago.util.IMLocation;
 
@@ -33,7 +34,14 @@ public class IMBrowseLoc extends ListActivity {
 		
 		Intent me = this.getIntent();
 		if (me.hasExtra("categoryName")) {
-			myLocation = new LocationAdapter(this, me.getStringExtra("categoryName"));
+			String categoryName = me.getStringExtra("categoryName");
+			myLocation = new LocationAdapter(this, categoryName);
+			if (categoryName.compareTo(IMConstants.ALL_LOCATION) == 0) {
+				this.setTitle("All items of interest");
+			} else {
+				this.setTitle("Items in \"" + categoryName + "\" category");
+			}
+			
 		}
 		
 		this.setListAdapter(myLocation);

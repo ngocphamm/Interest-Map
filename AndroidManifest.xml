@@ -23,12 +23,10 @@
 			android:theme="@android:style/Theme.Dialog" >
 		</activity>
 		<activity android:name="IMBrowseCat" 
-			android:label="@string/browse_title"
-			android:theme="@android:style/Theme.NoTitleBar" >
+			android:label="@string/browse_title" >
 		</activity>
 		<activity android:name="IMBrowseLoc" 
-			android:label="@string/browse_title"
-			android:theme="@android:style/Theme.NoTitleBar" >
+			android:label="@string/browse_title" >
 		</activity>
 		<activity android:name=".IMMapView"
 			android:label="@string/demo_title"
