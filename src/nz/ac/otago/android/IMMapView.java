@@ -47,7 +47,7 @@ public class IMMapView extends MapActivity {
 		
 		// Get the marker on an overlay
 		mapOverlays = mapView.getOverlays();
-		drawable = this.getResources().getDrawable(R.drawable.mapmarkersmall);
+		drawable = this.getResources().getDrawable(R.drawable.mapmarker);
 		itemizedOverlay = new IMItemizedOverlay(drawable);
 		
 		ArrayList<IMLocation> locations = new ArrayList<IMLocation>();

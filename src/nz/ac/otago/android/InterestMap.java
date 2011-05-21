@@ -153,7 +153,7 @@ public class InterestMap extends Activity implements OnClickListener {
 						IMConstants.FILE_NAME,
 						Context.MODE_WORLD_WRITEABLE);
 
-				fp.DownloadFromUrl(urls[0], fos, IMConstants.FILE_NAME);
+				fp.downloadFromUrl(urls[0], fos, IMConstants.FILE_NAME);
 	
 				FileInputStream fis = openFileInput(IMConstants.FILE_NAME);
 				locations = fp.parseFile(fis);

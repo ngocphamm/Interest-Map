@@ -34,7 +34,7 @@ public class IMUtilities {
 	 * @param fos		FileOutputStream to be used (provided by Android)
 	 * @param fileName  Filename to be saved to device
 	 */
-	public void DownloadFromUrl(String inUrl, FileOutputStream fos, 
+	public void downloadFromUrl(String inUrl, FileOutputStream fos, 
 															String fileName) {
 		try {
 			// Create URL-type object from url String
