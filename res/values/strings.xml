@@ -4,12 +4,12 @@
     <string name="main_title">Map of Interesting Locations</string>
     
     <string name="browse_title">Browsing By Category</string>
-    <string name="browse_label">Browse Locations</string>
+    <string name="browse_label">Browse Items</string>
     <string name="browse_location_name">Location</string>
     <string name="browse_location_category">Category</string>
 	
 	<string name="demo_title">Loading location ...</string>
-	<string name="demo_label">Demo</string>
+	<string name="demo_label">View Map</string>
 	<string name="demo_instruction">You started new game!</string>
 	<string name="web_title">Web View</string>
 	

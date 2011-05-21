@@ -12,7 +12,9 @@
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name="InterestMap"
-                  android:label="@string/app_name" >
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait"
+                  android:configChanges="keyboardHidden|orientation" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -23,18 +25,22 @@
 			android:theme="@android:style/Theme.Dialog" >
 		</activity>
 		<activity android:name="IMBrowseCat" 
-			android:label="@string/browse_title" >
+			android:label="@string/browse_title"
+			android:screenOrientation="portrait" >
 		</activity>
 		<activity android:name="IMBrowseLoc" 
-			android:label="@string/browse_title" >
+			android:label="@string/browse_title"
+			android:screenOrientation="portrait" >
 		</activity>
 		<activity android:name=".IMMapView"
 			android:label="@string/demo_title"
-			android:theme="@android:style/Theme.NoTitleBar" >
+			android:theme="@android:style/Theme.NoTitleBar"
+			android:screenOrientation="portrait" >
 		</activity>
 		<activity android:name=".IMWebView" 
 			android:label="@string/web_title"
-     		android:theme="@android:style/Theme.NoTitleBar" >
+     		android:theme="@android:style/Theme.NoTitleBar"
+     		android:screenOrientation="portrait" >
      	</activity>
 		<uses-library android:required="true" android:name="com.google.android.maps"></uses-library>
     </application>
