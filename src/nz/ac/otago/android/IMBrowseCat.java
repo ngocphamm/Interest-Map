@@ -67,7 +67,9 @@ public class IMBrowseCat extends ListActivity {
 			IMDatabase db = new IMDatabase(context);
 			db.open();
 			categories = db.getCategories();
-			categories.add(0, IMConstants.ALL_LOCATION);
+			if (!categories.isEmpty()) {
+				categories.add(0, IMConstants.ALL_LOCATION);
+			}
 			db.close();
 		}
 		

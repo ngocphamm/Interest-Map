@@ -97,8 +97,22 @@ public class IMUtilities {
 		    		Scanner scanner = new Scanner(strLine);
 			        scanner.useDelimiter(",");
 			        if (scanner.hasNext()) {
-			        	lat = scanner.nextInt();
-			        	lon = scanner.nextInt();
+			        	float temp_lat = scanner.nextFloat();
+			        	float temp_lon = scanner.nextFloat();
+			        	
+			        	/* Accept both degrees and microdegrees */
+			        	if (temp_lat < 1000 && temp_lat > -1000) {
+			        		lat = (int)(temp_lat * 1000000);
+			        	} else {
+			        		lat = (int)temp_lat;
+			        	}
+			        	
+			        	if (temp_lon < 1000 && temp_lon > -1000) {
+			        		lon = (int)(temp_lon * 1000000);
+			        	} else {
+			        		lon = (int)temp_lon;
+			        	}
+			        	
 						name 		= scanner.next();
 						category	= scanner.next();
 						url 		= scanner.next();
@@ -122,6 +136,7 @@ public class IMUtilities {
 	/**
 	 * Get HTML content of the web page that contains info. about the place
 	 * http://androidcommunity.com/forums/archive/index.php/t-8177.html
+	 * NB: This only work for simple HTML contents, not all the web pages
 	 * @param url	String URL to the web page
 	 * @return		String contents of the web page
 	 */
