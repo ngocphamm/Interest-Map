@@ -25,6 +25,8 @@ import android.widget.TextView;
  * @author ngocminh
  */
 public class IMBrowseLoc extends ListActivity {
+	
+	/** LocationAdapter to build location list */
 	LocationAdapter myLocation;
 	
 	@Override
@@ -36,6 +38,8 @@ public class IMBrowseLoc extends ListActivity {
 		if (me.hasExtra("categoryName")) {
 			String categoryName = me.getStringExtra("categoryName");
 			myLocation = new LocationAdapter(this, categoryName);
+			
+			/* Set title bar for the intent with Category name */
 			if (categoryName.compareTo(IMConstants.ALL_LOCATION) == 0) {
 				this.setTitle("All items of interest");
 			} else {
@@ -59,12 +63,16 @@ public class IMBrowseLoc extends ListActivity {
 		 */
 		if (this.isOnline() == true) {
 			Intent mapview = new Intent(this, IMMapView.class);
+			/* singleView extra to tell MapView to zoom closer to the place */
 			mapview.putExtra("singleView", 1);
+			
+			/* latitude and longitude extras tell MapView to navigate to the place */
 			mapview.putExtra("lat", place.getLatitude());
 			mapview.putExtra("lon", place.getLongitude());
 			startActivity(mapview);
 		} else {
 			Intent webview = new Intent(this, IMWebView.class);
+			/* Tell WebView to use cached contents */
 			webview.putExtra("offline", 1);
 			webview.putExtra("locationName", place.getName());
 			startActivity(webview);
@@ -88,6 +96,10 @@ public class IMBrowseLoc extends ListActivity {
 	    }
 	}
 	
+	/**
+	 * Extend BaseAdapter to create a list of location
+	 * @author ngocminh
+	 */
 	private class LocationAdapter extends BaseAdapter { 
 		private LayoutInflater mInflater;
 		private ArrayList<IMLocation> locations;
@@ -96,6 +108,7 @@ public class IMBrowseLoc extends ListActivity {
 			mInflater = LayoutInflater.from(context); 
 			locations = new ArrayList<IMLocation>(); 
 			
+			/* Get items of interest from the database */
 			IMDatabase db = new IMDatabase(context);
 			db.open();
 			locations = db.getLocations(categoryName);
@@ -104,10 +117,12 @@ public class IMBrowseLoc extends ListActivity {
 		
 		@Override
 		public int getCount() {
+			/* get numbers of items */
 			return locations.size();
 		}
 		
 		public IMLocation getItem(int i) {
+			/* return object of IMLocation type with given index i */
 			return locations.get(i);
 		}
 		
@@ -116,10 +131,16 @@ public class IMBrowseLoc extends ListActivity {
 		}
 		
 		public View getView(int index, View convertView, ViewGroup parent) {
+			/* Get item and add to a "holder" */
+			
 			final ViewHolder holder; 
 			View view = convertView;
 			
 			if ((view == null) || (view.getTag() == null)) {
+				/* 
+				 * if there's no holder defined, get it from layout 
+				 * "imbrowselocrow", TextView "name" and "category"
+				 */
 				view = mInflater.inflate(R.layout.imbrowselocrow, null); 
 				holder = new ViewHolder(); 
 				holder.mName = (TextView)view.findViewById(R.id.name); 
@@ -129,10 +150,13 @@ public class IMBrowseLoc extends ListActivity {
 				holder = (ViewHolder) view.getTag();
 			}
 			
+			/* Set text for the holder with Location name and Category name */
 			IMLocation location = getItem(index); 
 			holder.mName.setText(location.getName()); 
 			holder.mCategory.setText(location.getCategory());
-			view.setTag(holder); return view;
+			view.setTag(holder); 
+			
+			return view;
 		}
 		
 		public class ViewHolder {

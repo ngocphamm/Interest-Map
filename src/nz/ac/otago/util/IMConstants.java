@@ -5,6 +5,7 @@ package nz.ac.otago.util;
  * @author ngocminh
  */
 public class IMConstants { 
+	/** data file name to be saved on device */
 	public static final String FILE_NAME 		= "locationlist.txt";
 	public static final String ALL_LOCATION		= "All Locations";
 	
@@ -19,12 +20,9 @@ public class IMConstants {
 	public static final String CATEGORY 		= "category";
 	public static final String URL 				= "url";
 	public static final String CACHE 			= "cache";
-	public static final String DATE 			= "recorddate"; 
+	public static final String DATE 			= "recorddate";
 	
-	public static final String CATEGORY_TABLE	= "imcategories";
-	public static final String CATEGORY_ID		= "category_id";
-	
-	/* Texts for Toast */
+	/* Texts for Toast messages */
 	public static final String TOAST_NO_CAT			= "There is no category to show";
 	public static final String TOAST_NO_INTERNET	= "No Internet Connectivity! Data will be loaded from cache!";
 	public static final String TOAST_DATA_STORED	= "Data stored sucessfully";
@@ -33,9 +31,9 @@ public class IMConstants {
 	public static final String TOAST_ERROR_URL		= "Cannot get location info from URLs";
 	public static final String TOAST_ERROR_STORE	= "Cannot store data!";
 	
-	/* Texts for Messages */
+	/* Texts for Dialogs */
 	public static final String MES_LOAD_DATA	= "Do you want to load data file from the Internet?";
-	
-	/* Test Offline Browsing */
-	public static final String OFFLINE_DATA 	= "<html><body>This is a test.</body></html>";
+	public static final String MES_DOWN_DATA	= "Downloading data file ...";
+	public static final String MES_DOWN_INFO	= "Retrieving location info from URLs ...";
+	public static final String MES_STORE_INFO	= "Storing information to database ...";
 }

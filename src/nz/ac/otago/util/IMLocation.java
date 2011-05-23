@@ -11,11 +11,23 @@ package nz.ac.otago.util;
  * @author ngocminh
  */
 public class IMLocation {
+	
+	/** Latitude for the location */
 	private int latitude;
+	
+	/** Longitude for the location */
 	private int longitude;
+	
+	/** Name of the location */
 	private String name;
+	
+	/** Category for the location */
 	private String category;
+	
+	/** URL with detail information for the location */
 	private String url;
+	
+	/** Cached contents of the above URL for the location */
 	private String cache;
 	
 	public IMLocation() {

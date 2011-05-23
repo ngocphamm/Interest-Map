@@ -16,8 +16,12 @@ import android.util.Log;
  * @author ngocminh
  */
 public class IMDatabase extends Activity {
+	
+	/** SQLite database object */
 	private SQLiteDatabase db;
 	private final Context context;
+	
+	/** IMDatabaseHelper object, to create database and table structure */
 	private final IMDatabaseHelper dbhelper;
 
 	public IMDatabase(Context c) {
@@ -26,10 +30,10 @@ public class IMDatabase extends Activity {
 				IMConstants.DATABASE_VERSION);
 	}
 	
-	/**
-	 * Close database connection
-	 */
 	public void close() {
+		/*
+		 * Close database connection
+		 */
 		db.close();
 	}
 	
@@ -65,7 +69,7 @@ public class IMDatabase extends Activity {
 		try {
 			ContentValues newValue = new ContentValues();
 			
-			/* If Location has more attributes, add them here */
+			/* If Location object has more attributes, add them here */
 			newValue.put(IMConstants.LATITUDE, location.getLatitude());
 			newValue.put(IMConstants.LONGITUDE, location.getLongitude());
 			newValue.put(IMConstants.LOCATION, location.getName());
@@ -106,14 +110,16 @@ public class IMDatabase extends Activity {
 	public ArrayList<IMLocation> getLocations(String catName) {
 		ArrayList<IMLocation> locationList = new ArrayList<IMLocation>();
 		
+		/* build the raw query */
 		String query = "select * from " + IMConstants.LOCATION_TABLE;
 		if (catName.compareTo(IMConstants.ALL_LOCATION) != 0) {
 			query += " where " + IMConstants.CATEGORY + " = '" + catName + "'"; 
 		}
 		
-		// Order by location name
+		/* Order by location name */
 		query += " order by " + IMConstants.LOCATION;
-				
+		
+		/* Create a cursor to run through the result set of SQLite query */
 		Cursor c = db.rawQuery(query, null);
 		startManagingCursor(c); 
 		if(c.moveToFirst()){
@@ -145,6 +151,7 @@ public class IMDatabase extends Activity {
 				+ " from " + IMConstants.LOCATION_TABLE 
 				+ " group by " + IMConstants.CATEGORY
 				+ " order by " + IMConstants.CATEGORY,  null);
+		
 		startManagingCursor(c);
 		if (c.moveToFirst()) {
 			do { 
@@ -171,7 +178,6 @@ public class IMDatabase extends Activity {
 				+ " = '" + locationName + "'";		
 		
 		Cursor c = db.rawQuery(query, null);
-				
 		startManagingCursor(c);
 		if (c.moveToFirst()) {
 			do {

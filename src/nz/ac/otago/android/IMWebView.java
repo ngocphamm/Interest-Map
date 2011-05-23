@@ -22,7 +22,10 @@ public class IMWebView extends Activity {
 	    mWebView = (WebView) findViewById(R.id.imwebview);
 	    mWebView.getSettings().setJavaScriptEnabled(true);
 	    
-	    // If has Internet connection, go ONLINE; else use OFFLINE (cache) data
+	    /* 
+	     * If has Internet connection, go ONLINE
+	     * Else use OFFLINE (cache) data 
+	     */
 	    Intent me = this.getIntent();
 	    if (me.hasExtra("offline")) {
 	    	int offline = me.getIntExtra("offline", 0);
@@ -37,6 +40,8 @@ public class IMWebView extends Activity {
 	    		db.open();
 	    		String offlineData = db.getCachedData(locationName);
 	    		db.close();
+	    		
+	    		/* configure WebView to use data string with content type */
 	    		mWebView.loadData(offlineData, "text/html", null);
 	    	}
 		}

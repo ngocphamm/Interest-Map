@@ -23,6 +23,8 @@ import android.widget.Toast;
  * @author ngocminh
  */
 public class IMBrowseCat extends ListActivity {
+	
+	/** CategoryAdapter to build category list */
 	CategoryAdapter myCategory;
 	
 	@Override
@@ -32,8 +34,10 @@ public class IMBrowseCat extends ListActivity {
 		
 		myCategory = new CategoryAdapter(this);
 		if (myCategory.getCount() != 0) {
+			/* If there is more than 1 category, show it/them */
 			this.setListAdapter(myCategory);
-		} else {	/* Show a message that there's no category */
+		} else {	
+			/* Show a Toast message that there's no category */
 			Toast toast = Toast.makeText(this, IMConstants.TOAST_NO_CAT, 
 													Toast.LENGTH_SHORT);
 			toast.setGravity(Gravity.TOP|Gravity.CENTER, 0, 40);
@@ -54,7 +58,6 @@ public class IMBrowseCat extends ListActivity {
 	/**
 	 * Extend BaseAdapter to create a list of category
 	 * @author ngocminh
-	 *
 	 */
 	private class CategoryAdapter extends BaseAdapter { 
 		private LayoutInflater mInflater;
@@ -64,10 +67,16 @@ public class IMBrowseCat extends ListActivity {
 			mInflater = LayoutInflater.from(context); 
 			categories = new ArrayList<String>(); 
 			
+			/* Get categories from the database */
 			IMDatabase db = new IMDatabase(context);
 			db.open();
 			categories = db.getCategories();
+			/*
+			 * If there is more than one category, add an "asbstract" 
+			 * category that shows all items of interest called "All Locations"
+			 */
 			if (!categories.isEmpty()) {
+				/* Add to top of the category list */
 				categories.add(0, IMConstants.ALL_LOCATION);
 			}
 			db.close();
@@ -75,22 +84,34 @@ public class IMBrowseCat extends ListActivity {
 		
 		@Override
 		public int getCount() {
+			/* 
+			 * Get the number of categories 
+			 * NB: +1 by the added "abstract" category
+			 */
 			return categories.size();
 		} 
-		
+
 		public String getItem(int i) {
+			/* return category name at the given index i */
 			return categories.get(i);
 		} 
 		
 		public long getItemId(int i) {
+			/* return category id the given index i, here is i, actually */
 			return i;
 		} 
 		
 		public View getView(int index, View convertView, ViewGroup parent) {
+			/* Get item and add to a "holder" */
+			
 			final ViewHolder holder; 
 			View view = convertView;
 			
 			if ((view == null) || (view.getTag() == null)) {
+				/* 
+				 * if there's no holder defined, get it from layout 
+				 * "imbrowsecatrow", TextView "name"
+				 */
 				view = mInflater.inflate(R.layout.imbrowsecatrow, null); 
 				holder = new ViewHolder(); 
 				holder.mName = (TextView)view.findViewById(R.id.name); 
@@ -99,8 +120,10 @@ public class IMBrowseCat extends ListActivity {
 				holder = (ViewHolder) view.getTag();
 			}
 			
+			/* set text for the holder = Category name */
 			holder.mName.setText(getItem(index)); 
 			view.setTag(holder); 
+			
 			return view;
 		}
 		

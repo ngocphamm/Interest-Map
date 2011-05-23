@@ -37,7 +37,7 @@ public class IMUtilities {
 	public void downloadFromUrl(String inUrl, FileOutputStream fos, 
 															String fileName) {
 		try {
-			// Create URL-type object from url String
+			/* Create URL-type object from url String */
 			URL url = new URL(inUrl);
 
 			long startTime = System.currentTimeMillis();
@@ -51,9 +51,7 @@ public class IMUtilities {
 			InputStream is = ucon.getInputStream();
 			BufferedInputStream bis = new BufferedInputStream(is);
 
-			/*
-			 * Read bytes to the Buffer until there is nothing more to read (-1)
-			 */
+			/* Read bytes to the Buffer until there is nothing more to read (-1) */
 			ByteArrayBuffer baf = new ByteArrayBuffer(50);
 			int current = 0;
 			while ((current = bis.read()) != -1) {
@@ -86,7 +84,7 @@ public class IMUtilities {
 	        BufferedReader br 	= new BufferedReader(new InputStreamReader(in));
 		    String strLine;
 		    
-		    /* Read File Line By Line */
+		    /* Read the file Line-By-Line */
 		    int lat = 0;
 		    int lon = 0;
 		    String name 	= "";
@@ -100,7 +98,12 @@ public class IMUtilities {
 			        	float temp_lat = scanner.nextFloat();
 			        	float temp_lon = scanner.nextFloat();
 			        	
-			        	/* Accept both degrees and microdegrees */
+			        	/* 
+			        	 * Accept both degrees and microdegrees
+			        	 * If the provided number is degrees, change it to 
+			        	 * microdegrees (for MapView GeoPoint) then type cast 
+			        	 * to integer
+			        	 */
 			        	if (temp_lat < 1000 && temp_lat > -1000) {
 			        		lat = (int)(temp_lat * 1000000);
 			        	} else {
@@ -118,6 +121,7 @@ public class IMUtilities {
 						url 		= scanner.next();
 			        }
 			        
+			        /* Add item of interest to the ArrayList */
 			        locationList.add(new IMLocation(lat, lon, name, category, url));
 		    	} catch (InputMismatchException e) {
 		    		Log.d("InterestMap", "Error: " + e);

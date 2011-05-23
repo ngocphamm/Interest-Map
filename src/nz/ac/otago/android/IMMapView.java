@@ -22,6 +22,8 @@ import nz.ac.otago.util.IMLocation;
 
 /**
  * Intent to show MapView with one or all locations from data file
+ * http://developer.android.com/guide/tutorials/views/hello-mapview.html
+ * http://www.vogella.de/articles/AndroidLocationAPI/article.html
  * @author ngocminh
  *
  */
@@ -38,14 +40,14 @@ public class IMMapView extends MapActivity {
 		
 		setContentView(R.layout.immapview);
 		
-		// Get MapView and turn some configurations on
+		/* Get MapView and turn some configurations on */
 		mapView = (MapView) findViewById(R.id.immapview);
 		mapView.setBuiltInZoomControls(true);
 		
-		// Get the Map Controller and define some settings
+		/* Get the Map Controller and define some settings */
 		mapController = mapView.getController();
 		
-		// Get the marker on an overlay
+		/* Get the marker on an overlay */
 		mapOverlays = mapView.getOverlays();
 		drawable = this.getResources().getDrawable(R.drawable.mapmarker);
 		itemizedOverlay = new IMItemizedOverlay(drawable);
@@ -58,13 +60,13 @@ public class IMMapView extends MapActivity {
 		locations = db.getLocations(IMConstants.ALL_LOCATION);
 		db.close();
 		
-		// Go through all locations and add them to the maps
+		/* Go through all locations and add them to the maps */
 		Iterator<IMLocation> itr = locations.iterator();
 		
 		IMLocation location = new IMLocation();
 		while(itr.hasNext()) {
 			location = itr.next();
-			// Create new GeoPoint object representing the location of interest
+			/* Create new GeoPoint object representing the item of interest */
 			GeoPoint point = new GeoPoint(location.getLatitude(), 
 											location.getLongitude());
 			OverlayItem overlayitem = new OverlayItem(point, 
@@ -82,9 +84,9 @@ public class IMMapView extends MapActivity {
 											me.getIntExtra("lon", 0));
 			
 			mapController.animateTo(point);
-			mapController.setZoom(10); 	// Zooming closer to the location
+			mapController.setZoom(10); 	/* Zooming closer to the location */
 		} else {
-			mapController.setZoom(2); 	// Zooming to world view
+			mapController.setZoom(2); 	/* Zooming to world view */
 		}
 		
 		mapOverlays.add(itemizedOverlay);
