@@ -144,7 +144,7 @@ public class IMUtilities {
 	 * @param url	String URL to the web page
 	 * @return		String contents of the web page
 	 */
-	public String getOfflineHTML(String url) {
+	public String getOfflineHtml(String url) {
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(url);
 		ResponseHandler<String> responseHandler = new BasicResponseHandler();

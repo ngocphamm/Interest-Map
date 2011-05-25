@@ -74,7 +74,7 @@ public class IMDatabase extends Activity {
 			newValue.put(IMConstants.LONGITUDE, location.getLongitude());
 			newValue.put(IMConstants.LOCATION, location.getName());
 			newValue.put(IMConstants.CATEGORY, location.getCategory());
-			newValue.put(IMConstants.URL, location.getURL());
+			newValue.put(IMConstants.URL, location.getUrl());
 			newValue.put(IMConstants.CACHE, location.getCache());
 			newValue.put(IMConstants.DATE,
 					java.lang.System.currentTimeMillis());

@@ -71,7 +71,7 @@ public class IMMapView extends MapActivity {
 											location.getLongitude());
 			OverlayItem overlayitem = new OverlayItem(point, 
 														location.getName(), 
-														location.getURL());
+														location.getUrl());
 			
 			itemizedOverlay.addOverlay(overlayitem);
 		}

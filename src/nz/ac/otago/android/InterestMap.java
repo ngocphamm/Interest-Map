@@ -232,7 +232,7 @@ public class InterestMap extends Activity implements OnClickListener {
 			IMLocation location = new IMLocation();
 			while (itr.hasNext()) {
 				location = itr.next();
-				location.setCache(fp.getOfflineHTML(location.getURL()));
+				location.setCache(fp.getOfflineHtml(location.getUrl()));
 			}
 			
 			return 1;

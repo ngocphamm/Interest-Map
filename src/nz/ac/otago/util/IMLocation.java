@@ -36,12 +36,12 @@ public class IMLocation {
 	
 	public IMLocation(int latitude, int longitude, String name,
 						String category, String url) {
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.name = name;
-		this.category = category;
-		this.url = url;
-		this.cache = "";
+		this.latitude 	= latitude;
+		this.longitude 	= longitude;
+		this.name 		= name;
+		this.category 	= category;
+		this.url 		= url;
+		this.cache 		= "";
 	}
 	
 	public void setCache(String cache) {
@@ -64,7 +64,7 @@ public class IMLocation {
 		return this.category;
 	}
 	
-	public String getURL() {
+	public String getUrl() {
 		return this.url;
 	}
 	
