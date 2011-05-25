@@ -25,22 +25,18 @@
 			android:theme="@android:style/Theme.Dialog" >
 		</activity>
 		<activity android:name="IMBrowseCat" 
-			android:label="@string/browse_title"
-			android:screenOrientation="portrait" >
+			android:label="@string/browse_title" >
 		</activity>
 		<activity android:name="IMBrowseLoc" 
-			android:label="@string/browse_title"
-			android:screenOrientation="portrait" >
+			android:label="@string/browse_title" >
 		</activity>
 		<activity android:name=".IMMapView"
 			android:label="@string/demo_title"
-			android:theme="@android:style/Theme.NoTitleBar"
-			android:screenOrientation="portrait" >
+			android:theme="@android:style/Theme.NoTitleBar" >
 		</activity>
 		<activity android:name=".IMWebView" 
 			android:label="@string/web_title"
-     		android:theme="@android:style/Theme.NoTitleBar"
-     		android:screenOrientation="portrait" >
+     		android:theme="@android:style/Theme.NoTitleBar" >
      	</activity>
 		<uses-library android:required="true" android:name="com.google.android.maps"></uses-library>
     </application>
