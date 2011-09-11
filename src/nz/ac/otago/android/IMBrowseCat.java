@@ -72,7 +72,7 @@ public class IMBrowseCat extends ListActivity {
 			db.open();
 			categories = db.getCategories();
 			/*
-			 * If there is more than one category, add an "asbstract" 
+			 * If there is more than one category, add an "abstract" 
 			 * category that shows all items of interest called "All Locations"
 			 */
 			if (!categories.isEmpty()) {

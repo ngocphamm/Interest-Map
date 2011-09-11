@@ -47,7 +47,7 @@ import nz.ac.otago.util.IMLocation;
 public class InterestMap extends Activity implements OnClickListener {
 	
 	/** Url of the data file to be downloaded */
-	private static final String FIXED_URL = "http://www.andypham.info/interestlist.txt";
+	private static final String FIXED_URL = "http://ngocpham.info/pfmedia/interestlist.txt";
 	
 	/** ArrayList of the items of interest */
 	private ArrayList<IMLocation> locations;
