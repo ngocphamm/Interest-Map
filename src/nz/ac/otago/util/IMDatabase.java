@@ -45,7 +45,7 @@ public class IMDatabase extends Activity {
 		try {
 			db = dbhelper.getWritableDatabase();
 		} catch (SQLiteException ex) {
-			Log.v("InterestMap", "ERROR: " + ex.getMessage());
+			Log.e("DBConnect", "ERROR: " + ex.getMessage());
 			db = dbhelper.getReadableDatabase();
 		}
 	}
@@ -54,7 +54,7 @@ public class IMDatabase extends Activity {
 	 * Each time reloading data file, also delete all existing records from db
 	 */
 	public void prepare() {
-		Log.v("InterestMap", "IMDatabase prepare: Deleting old records");
+		Log.d("InterestMap", "IMDatabase prepare: Deleting old records");
 		String delete = "delete from " + IMConstants.LOCATION_TABLE
 							+ " where 1=1";
 		db.execSQL(delete);
@@ -81,7 +81,7 @@ public class IMDatabase extends Activity {
 
 			return db.insert(IMConstants.LOCATION_TABLE, null, newValue);
 		} catch (SQLiteException ex) {
-			Log.v("InterestMap", "ERROR: " + ex.getMessage());
+			Log.e("InsertLocation", "ERROR: " + ex.getMessage());
 			return -1;
 		}
 	}

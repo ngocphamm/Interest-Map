@@ -43,11 +43,11 @@ public class IMDatabaseHelper extends SQLiteOpenHelper {
 	 * Run on first creation of database file to create all tables needed
 	 */
 	public void onCreate(SQLiteDatabase db) {
-		Log.v("InterestMap", "Database: Creating all the tables");
+		Log.d("InterestMap", "Database: Creating all the tables");
 		try {			
 			db.execSQL(CREATE_LOCATION_TABLE);
 		} catch (SQLiteException ex) {
-			Log.v("InterestMap", "ERROR: " + ex.getMessage());
+			Log.e("OnCreatingTable", "ERROR: " + ex.getMessage());
 		}
 	}
 

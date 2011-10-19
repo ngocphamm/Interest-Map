@@ -66,7 +66,7 @@ public class IMUtilities {
 							+ " msec");
 			Log.d("InterestMap", "Saved file name: " + fileName);
 		} catch (IOException e) {
-			Log.d("InterestMap", "ERROR: " + e);
+			Log.e("IMUtilities", "ERROR: " + e);
 		}
 	}
 	
@@ -124,14 +124,14 @@ public class IMUtilities {
 			        /* Add item of interest to the ArrayList */
 			        locationList.add(new IMLocation(lat, lon, name, category, url));
 		    	} catch (InputMismatchException e) {
-		    		Log.d("InterestMap", "Error: " + e);
+		    		Log.e("ParsingFile", "Error: " + e);
 		    	}
 		    }
 		    
 		    /* Close the input stream */
 		    in.close();
 		} catch (IOException e) {
-			Log.d("InterestMap", "ERROR: " + e);
+			Log.e("OpeningFile", "ERROR: " + e);
 		}
 		
 		return locationList;
@@ -153,9 +153,9 @@ public class IMUtilities {
 		try {
 			response = httpClient.execute(httpGet, responseHandler);
 		} catch (ClientProtocolException e) {
-			Log.d("InterestMap", "ERROR: " + e);
+			Log.e("OfflineHTML", "ERROR: " + e);
 		} catch (IOException e) {
-			Log.d("InterestMap", "ERROR: " + e);
+			Log.e("OfflineHTL", "ERROR: " + e);
 		}
 		
 		return response;

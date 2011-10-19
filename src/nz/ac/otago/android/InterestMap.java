@@ -152,7 +152,7 @@ public class InterestMap extends Activity implements OnClickListener {
 	            && cm.getActiveNetworkInfo().isConnected()) {
 	        return true;
 	    } else {
-	    	Log.d("InterestMap", "WARNING: Internet connection not available!");
+	    	Log.w("InternetStatus", "WARNING: Internet connection not available!");
 	    	return false;
 	    }
 	}
@@ -188,7 +188,7 @@ public class InterestMap extends Activity implements OnClickListener {
 				/* Parse saved data file to ArrayList */
 				locations = fp.parseFile(fis);
 			} catch (FileNotFoundException e) {
-				Log.d("InterestMap", "ERROR: " + e);
+				Log.e("ParsingFile", "ERROR: " + e);
 				return 0;
 			}
 			
